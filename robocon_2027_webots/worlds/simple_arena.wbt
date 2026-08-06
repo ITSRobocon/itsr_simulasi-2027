@@ -1,0 +1,337 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1781746545588901 0.31000677029904244 0.9338894981964285 1.103392888363461
+  position -8.485322845627543 -14.655116960731561 6.439659815373058
+}
+SolidBox {
+  translation 1.5 0 0.3
+  name "platform_level_1"
+  size 3 6 0.6
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+  recognitionColors [
+    0 0 0
+  ]
+}
+SolidBox {
+  translation 0 0 0.901
+  name "sticker_level_2"
+  size 3 3 1e-16
+  appearance PBRAppearance {
+    baseColor 0.745 0.745 0.725
+    baseColorMap ImageTexture {
+      url [
+        "level2.png"
+        ""
+        ""
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -1.5 0 0.3
+  name "platform_level_1(1)"
+  size 3 6 0.6
+  appearance PBRAppearance {
+    baseColor 0.921 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+  recognitionColors [
+    0 0 0
+  ]
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 11.05 11.05
+  tileSize 1 1
+  appearance Parquetry {
+    type "light strip"
+  }
+}
+SolidBox {
+  translation 2.975 1.1 0.625
+  name "bazel_level1(3)"
+  size 0.05 3.8 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 0 0.601
+  name "sticker_level_1"
+  size 6 6 1e-16
+  appearance PBRAppearance {
+    baseColor 0.745 0.745 0.725
+    baseColorMap ImageTexture {
+      url [
+        "level_1.png"
+        ""
+        ""
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+    textureTransform TextureTransform {
+      rotation 1.5708
+    }
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 0 0.001
+  name "sticker_ground"
+  size 11 11 1e-16
+  appearance PBRAppearance {
+    baseColor 0.745 0.745 0.725
+    baseColorMap ImageTexture {
+      url [
+        "ground.png"
+        ""
+        ""
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+    textureTransform TextureTransform {
+      rotation 1.5708
+    }
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 0 0.75
+  name "platform_level_2"
+  size 3 3 0.3
+  appearance PBRAppearance {
+    baseColor 0.745 0.745 0.725
+    baseColorMap ImageTexture {
+      url [
+        ""
+        ""
+        ""
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 5.525 0.05
+  name "bazel_ground"
+  size 11 0.05 0.1
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 -5.525 0.05
+  name "bazel_ground(1)"
+  size 11 0.05 0.1
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -5.525 0 0.05
+  name "bazel_ground(2)"
+  size 0.05 11.1 0.1
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 5.525 0 0.05
+  name "bazel_ground(3)"
+  size 0.05 11.1 0.1
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 2.975 -2.4 0.625
+  name "bazel_level1"
+  size 0.05 1.2 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 -2.975 0.625
+  name "bazel_level1(4)"
+  size 5.9 0.05 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 2.975 0.625
+  name "bazel_level1(5)"
+  size 5.9 0.05 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -2.975 -2.4 0.625
+  name "bazel_level1(1)"
+  size 0.05 1.2 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -2.975 1.1 0.625
+  name "bazel_level1(2)"
+  size 0.05 3.8 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 -1.85 0.625
+  name "bazel_level1(6)"
+  size 0.05 0.7 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 1.85 0.625
+  name "bazel_level1(7)"
+  size 0.05 0.7 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}

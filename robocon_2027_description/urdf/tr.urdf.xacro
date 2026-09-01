@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+
+<robot
+  xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="tr_robot">
+
+  <!-- ===================================================== -->
+  <!-- Konstanta dasar                                      -->
+  <!-- ===================================================== -->
+
+  <xacro:property name="base_length" value="0.70"/>
+  <xacro:property name="base_width" value="0.55"/>
+  <xacro:property name="base_height" value="0.16"/>
+
+  <xacro:property name="wheel_radius" value="0.10"/>
+  <xacro:property name="wheel_width" value="0.06"/>
+
+  <xacro:property name="wheel_x" value="0.23"/>
+  <xacro:property name="wheel_y" value="0.305"/>
+
+  <!-- ===================================================== -->
+  <!-- Material                                              -->
+  <!-- ===================================================== -->
+
+  <material name="blue">
+    <color rgba="0.12 0.22 0.75 1.0"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.03 0.03 0.03 1.0"/>
+  </material>
+
+  <!-- ===================================================== -->
+  <!-- Base footprint                                        -->
+  <!-- ===================================================== -->
+
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+
+    <origin
+      xyz="0 0 ${wheel_radius}"
+      rpy="0 0 0"/>
+  </joint>
+
+  <!-- ===================================================== -->
+  <!-- Chassis                                               -->
+  <!-- ===================================================== -->
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.08" rpy="0 0 0"/>
+
+      <geometry>
+        <box
+          size="${base_length}
+                ${base_width}
+                ${base_height}"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.08" rpy="0 0 0"/>
+
+      <geometry>
+        <box
+          size="${base_length}
+                ${base_width}
+                ${base_height}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0.08" rpy="0 0 0"/>
+
+      <mass value="12.0"/>
+
+      <inertia
+        ixx="0.33"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.55"
+        iyz="0.0"
+        izz="0.79"/>
+    </inertial>
+  </link>
+
+  <!-- ===================================================== -->
+  <!-- Macro roda                                            -->
+  <!-- ===================================================== -->
+
+  <xacro:macro
+    name="wheel"
+    params="prefix x y">
+
+    <link name="${prefix}_wheel_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+
+        <geometry>
+          <cylinder
+            radius="${wheel_radius}"
+            length="${wheel_width}"/>
+        </geometry>
+
+        <material name="black"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+
+        <geometry>
+          <cylinder
+            radius="${wheel_radius}"
+            length="${wheel_width}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="0.4"/>
+
+        <inertia
+          ixx="0.002"
+          ixy="0.0"
+          ixz="0.0"
+          iyy="0.002"
+          iyz="0.0"
+          izz="0.004"/>
+      </inertial>
+    </link>
+
+    <joint
+      name="${prefix}_wheel_joint"
+      type="continuous">
+
+      <parent link="base_link"/>
+      <child link="${prefix}_wheel_link"/>
+
+      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:wheel
+    prefix="front_left"
+    x="${wheel_x}"
+    y="${wheel_y}"/>
+
+  <xacro:wheel
+    prefix="front_right"
+    x="${wheel_x}"
+    y="${-wheel_y}"/>
+
+  <xacro:wheel
+    prefix="rear_left"
+    x="${-wheel_x}"
+    y="${wheel_y}"/>
+
+  <xacro:wheel
+    prefix="rear_right"
+    x="${-wheel_x}"
+    y="${-wheel_y}"/>
+
+</robot>

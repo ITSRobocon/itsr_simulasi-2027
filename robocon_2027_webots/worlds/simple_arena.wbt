@@ -5,12 +5,18 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+IMPORTABLE EXTERNPROTO "../protos/TRRobot.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.1781746545588901 0.31000677029904244 0.9338894981964285 1.103392888363461
-  position -8.485322845627543 -14.655116960731561 6.439659815373058
+  orientation 0.17130884289951773 -0.9051424205566295 -0.3890635922999146 5.377663507029862
+  position -13.680032743478376 -5.500601214597492 13.930389278240558
+}
+TRRobot {
+  translation 0 0 0.25
+  rotation 0 0 1 0
+  name "trrobot"
 }
 SolidBox {
   translation 1.5 0 0.3
@@ -39,7 +45,7 @@ SolidBox {
     baseColor 0.745 0.745 0.725
     baseColorMap ImageTexture {
       url [
-        "level2.png"
+        "textures/level2.png"
         ""
         ""
         ""
@@ -48,6 +54,7 @@ SolidBox {
     roughness 0.5
     metalness 0
   }
+  enableBoundingObject FALSE
   castShadows FALSE
 }
 SolidBox {
@@ -104,7 +111,7 @@ SolidBox {
     baseColor 0.745 0.745 0.725
     baseColorMap ImageTexture {
       url [
-        "level_1.png"
+        "textures/level_1.png"
         ""
         ""
         ""
@@ -116,6 +123,7 @@ SolidBox {
       rotation 1.5708
     }
   }
+  enableBoundingObject FALSE
   castShadows FALSE
 }
 SolidBox {
@@ -126,7 +134,7 @@ SolidBox {
     baseColor 0.745 0.745 0.725
     baseColorMap ImageTexture {
       url [
-        "ground.png"
+        "textures/ground.png"
         ""
         ""
         ""
@@ -138,6 +146,24 @@ SolidBox {
       rotation 1.5708
     }
   }
+  enableBoundingObject FALSE
+  castShadows FALSE
+}
+SolidBox {
+  translation 3.5 -1.3 0.601
+  name "stiker_tangga(1)"
+  size 1 1 0.001
+  appearance PBRAppearance {
+    baseColor 0.235 0.667 0.962
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  enableBoundingObject FALSE
   castShadows FALSE
 }
 SolidBox {
@@ -173,6 +199,46 @@ SolidBox {
     roughness 0.5
     metalness 0
   }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 -4.25 0.002
+  name "rebutan"
+  size 1.2 1.2 1e-16
+  appearance PBRAppearance {
+    baseColor 0.745 0.745 0.725
+    baseColorMap ImageTexture {
+      url [
+        "textures/level2.png"
+        ""
+        ""
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  enableBoundingObject FALSE
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 4.25 0.002
+  name "mustika"
+  size 1 1 1e-16
+  appearance PBRAppearance {
+    baseColor 0.745 0.745 0.725
+    baseColorMap ImageTexture {
+      url [
+        "textures/level2.png"
+        ""
+        ""
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  enableBoundingObject FALSE
   castShadows FALSE
 }
 SolidBox {
@@ -320,6 +386,70 @@ SolidBox {
   castShadows FALSE
 }
 SolidBox {
+  translation 0 -5.175 0.025
+  name "bazel_ground(4)"
+  size 0.05 0.65 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 -3.325 0.025
+  name "bazel_ground(5)"
+  size 0.05 0.65 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 3.375 0.025
+  name "bazel_ground(6)"
+  size 0.05 0.75 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 0 5.125 0.025
+  name "bazel_ground(7)"
+  size 0.05 0.75 0.05
+  appearance PBRAppearance {
+    baseColor 0.392 0.243 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
   translation 0 1.85 0.625
   name "bazel_level1(7)"
   size 0.05 0.7 0.05
@@ -334,4 +464,255 @@ SolidBox {
     metalness 0
   }
   castShadows FALSE
+}
+SolidBox {
+  translation -3.5 -1.3 0.3
+  name "tangga"
+  size 1 1 0.6
+  appearance PBRAppearance {
+    baseColor 0.922 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -3.5 0.898573 0
+  rotation 1 0 0 -0.169774
+  name "ramp"
+  size 1 3.55106 0.608752
+  appearance PBRAppearance {
+    baseColor 0.922 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 3.5 0.898573 0
+  rotation 1 0 0 -0.169774
+  name "ramp(1)"
+  size 1 3.55106 0.608752
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 3.5 -1.3 0.3
+  name "tangga(4)"
+  size 1 1 0.6
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -3.5 -1.95 0.225
+  name "tangga(1)"
+  size 1 0.3 0.45
+  appearance PBRAppearance {
+    baseColor 0.922 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 3.5 -1.95 0.225
+  name "tangga(5)"
+  size 1 0.3 0.45
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -3.5 -2.25 0.15
+  name "tangga(2)"
+  size 1 0.3 0.3
+  appearance PBRAppearance {
+    baseColor 0.922 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 3.5 -2.25 0.15
+  name "tangga(6)"
+  size 1 0.3 0.3
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -3.5 -2.55 0.075
+  name "tangga(3)"
+  size 1 0.3 0.15
+  appearance PBRAppearance {
+    baseColor 0.922 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -1.65 0 0.675
+  name "tangga(2)"
+  size 0.3 1 0.15
+  appearance PBRAppearance {
+    baseColor 0.922 0.706 0.627
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 3.5 -2.55 0.075
+  name "tangga(7)"
+  size 1 0.3 0.15
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation 1.65 0 0.675
+  name "tangga(2)"
+  size 0.3 1 0.15
+  appearance PBRAppearance {
+    baseColor 0.588 0.843 0.863
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  castShadows FALSE
+}
+SolidBox {
+  translation -3.5 -1.3 0.601
+  name "stiker_tangga"
+  size 1 1 0.001
+  appearance PBRAppearance {
+    baseColor 0.961 0.667 0.235
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+  enableBoundingObject FALSE
+  castShadows FALSE
+}
+Solid {
+  translation 0 0 1.3
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.392 0.243 0
+      }
+      geometry Cylinder {
+        height 0.8
+        radius 0.135
+      }
+      castShadows FALSE
+    }
+  ]
+  name "central pillar"
+  boundingObject Cylinder {
+    height 0.8
+    radius 0.135
+  }
+}
+Solid {
+  translation 0 4.25 0.25
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.392 0.243 0
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.135
+      }
+      castShadows FALSE
+    }
+  ]
+  name "pillar"
+  boundingObject Cylinder {
+    height 0.5
+    radius 0.135
+  }
 }

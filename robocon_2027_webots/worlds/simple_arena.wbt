@@ -5,18 +5,16 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
-IMPORTABLE EXTERNPROTO "../protos/TRRobot.proto"
+EXTERNPROTO "../protos/TRRobot.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.17130884289951773 -0.9051424205566295 -0.3890635922999146 5.377663507029862
-  position -13.680032743478376 -5.500601214597492 13.930389278240558
+  orientation 0.26380733686823843 -0.6460511768660057 -0.7162566340946079 5.2468860895477905
+  position -12.05800904804284 -10.791869579177416 11.763423347018065
 }
 TRRobot {
-  translation 0 0 0.25
-  rotation 0 0 1 0
-  name "trrobot"
+  translation -5.03 -0.44 0.27
 }
 SolidBox {
   translation 1.5 0 0.3

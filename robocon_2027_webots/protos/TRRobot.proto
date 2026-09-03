@@ -135,11 +135,9 @@ PROTO TRRobot [
       }
     ]
 
-    boundingObject [
-      Box {
-        size 0.70 0.26 0.18
-      }
-    ]
+    boundingObject Box {
+      size 0.70 0.26 0.18
+    }
 
     physics Physics {
       density -1

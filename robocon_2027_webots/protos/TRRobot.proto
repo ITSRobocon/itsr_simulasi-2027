@@ -4,7 +4,7 @@ PROTO TRRobot [
   field SFVec3f translation 0 0.25 0
   field SFRotation rotation 0 1 0 0
   field SFString name "tr_robot"
-  field SFString controller "<extern>"
+  field SFString controller "tr_mecanum_test"
 ]
 {
   Robot {
@@ -14,134 +14,264 @@ PROTO TRRobot [
     controller IS controller
 
     children [
-      Transform {
-        translation 0 0 0.06
+      # =====================================================
+      # CHASSIS
+      # =====================================================
+
+      Shape {
+        appearance PBRAppearance {
+          baseColor 0.10 0.25 0.80
+          roughness 0.7
+          metalness 0
+        }
+        geometry Box {
+          size 0.5 0.5 0.1
+        }
+      }
+
+      # Penanda depan robot
+      Pose {
+        translation 0.21 0.0 0.08
         children [
           Shape {
             appearance PBRAppearance {
-              baseColor 0.12 0.22 0.75
+              baseColor 1 0.65 0
               roughness 0.7
               metalness 0
             }
             geometry Box {
-              size 0.70 0.18 0.18
+              size 0.08 0.3 0.06
             }
           }
         ]
       }
 
-      Transform {
-        translation 0 0 0.12
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.18 0.30 0.90
-              roughness 0.7
-              metalness 0
-            }
-            geometry Box {
-              size 0.52 0.12 0.10
-            }
+      # =====================================================
+      # FRONT LEFT
+      # Posisi Webots:
+      # X = depan
+      # Y = atas
+      # Z = kanan/kiri
+      # =====================================================
+
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.18 0.285 0.0
+          axis 0 1 0
+          dampingConstant 0.01
+          staticFriction 0
+        }
+
+        device [
+          RotationalMotor {
+            name "front_left_wheel_motor"
+            maxVelocity 30
+            maxTorque 15
+          }
+          PositionSensor {
+            name "front_left_wheel_sensor"
           }
         ]
+
+        endPoint Solid {
+          translation 0.18 0.285 0.0
+          rotation 1 0 0 1.5708
+
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.03 0.03 0.03
+                roughness 1
+                metalness 0
+              }
+              geometry DEF MECANUM_WHEEL_GEOMETRY Cylinder {
+                radius 0.10
+                height 0.06
+                subdivision 24
+              }
+            }
+          ]
+
+          name "front_left_wheel"
+          contactMaterial "mecanum_left_diagonal"
+
+          boundingObject USE MECANUM_WHEEL_GEOMETRY
+
+          physics Physics {
+            density -1
+            mass 0.40
+          }
+        }
       }
 
-      Transform {
-        translation 0.25 0.10 0.02
-        rotation 1 0 0 1.5708
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.15 0.15 0.15
-              roughness 0.9
-              metalness 0.5
-            }
-            geometry Cylinder {
-              height 0.06
-              radius 0.12
-            }
+      # =====================================================
+      # FRONT RIGHT
+      # =====================================================
+
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.18 -0.285 0.0
+          axis 0 1 0
+          dampingConstant 0.01
+          staticFriction 0
+        }
+
+        device [
+          RotationalMotor {
+            name "front_right_wheel_motor"
+            maxVelocity 30
+            maxTorque 15
+          }
+          PositionSensor {
+            name "front_right_wheel_sensor"
           }
         ]
+
+        endPoint Solid {
+          translation 0.18 -0.285 0.0
+          rotation 1 0 0 1.5708
+
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.03 0.03 0.03
+                roughness 1
+                metalness 0
+              }
+              geometry USE MECANUM_WHEEL_GEOMETRY
+            }
+          ]
+
+          name "front_right_wheel"
+          contactMaterial "mecanum_right_diagonal"
+
+          boundingObject USE MECANUM_WHEEL_GEOMETRY
+
+          physics Physics {
+            density -1
+            mass 0.40
+          }
+        }
       }
 
-      Transform {
-        translation -0.25 0.10 0.02
-        rotation 1 0 0 1.5708
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.15 0.15 0.15
-              roughness 0.9
-              metalness 0.5
-            }
-            geometry Cylinder {
-              height 0.06
-              radius 0.12
-            }
+      # =====================================================
+      # REAR LEFT
+      # =====================================================
+
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor -0.18 0.285 0.0
+          axis 0 1 0
+          dampingConstant 0.01
+          staticFriction 0
+        }
+
+        device [
+          RotationalMotor {
+            name "rear_left_wheel_motor"
+            maxVelocity 30
+            maxTorque 15
+          }
+          PositionSensor {
+            name "rear_left_wheel_sensor"
           }
         ]
+
+        endPoint Solid {
+          translation -0.18 0.285 0.0
+          rotation 1 0 0 1.5708
+
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.03 0.03 0.03
+                roughness 1
+                metalness 0
+              }
+              geometry USE MECANUM_WHEEL_GEOMETRY
+            }
+          ]
+
+          name "rear_left_wheel"
+          contactMaterial "mecanum_right_diagonal"
+
+          boundingObject USE MECANUM_WHEEL_GEOMETRY
+
+          physics Physics {
+            density -1
+            mass 0.40
+          }
+        }
       }
 
-      Transform {
-        translation 0.25 -0.10 0.02
-        rotation 1 0 0 1.5708
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.15 0.15 0.15
-              roughness 0.9
-              metalness 0.5
-            }
-            geometry Cylinder {
-              height 0.06
-              radius 0.12
-            }
-          }
-        ]
-      }
+      # =====================================================
+      # REAR RIGHT
+      # =====================================================
 
-      Transform {
-        translation -0.25 -0.10 0.02
-        rotation 1 0 0 1.5708
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.15 0.15 0.15
-              roughness 0.9
-              metalness 0.5
-            }
-            geometry Cylinder {
-              height 0.06
-              radius 0.12
-            }
-          }
-        ]
-      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor -0.18 -0.285 0.0
+          axis 0 1 0
+          dampingConstant 0.01
+          staticFriction 0
+        }
 
-      Transform {
-        translation 0 0 -0.02
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.22 0.22 0.22
-              roughness 0.8
-              metalness 0.1
-            }
-            geometry Box {
-              size 0.78 0.26 0.06
-            }
+        device [
+          RotationalMotor {
+            name "rear_right_wheel_motor"
+            maxVelocity 30
+            maxTorque 15
+          }
+          PositionSensor {
+            name "rear_right_wheel_sensor"
           }
         ]
+
+        endPoint Solid {
+          translation -0.18 -0.285 0.0
+          rotation 1 0 0 1.5708
+
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.03 0.03 0.03
+                roughness 1
+                metalness 0
+              }
+              geometry USE MECANUM_WHEEL_GEOMETRY
+            }
+          ]
+
+          name "rear_right_wheel"
+          contactMaterial "mecanum_left_diagonal"
+
+          boundingObject USE MECANUM_WHEEL_GEOMETRY
+
+          physics Physics {
+            density -1
+            mass 0.40
+          }
+        }
       }
     ]
 
+    # =======================================================
+    # CHASSIS PHYSICS
+    # =======================================================
+
+    name IS name
+    contactMaterial "robot_chassis"
+
     boundingObject Box {
-      size 0.70 0.26 0.18
+      size 0.5 0.5 0.1
     }
 
     physics Physics {
       density -1
-      mass 15
+      mass 12
+      centerOfMass [
+        0 -0.03 0
+      ]
     }
   }
 }

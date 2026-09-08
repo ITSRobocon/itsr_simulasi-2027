@@ -3,9 +3,9 @@
 <package format="3">
   <name>robocon_2027_description</name>
   <version>0.0.1</version>
-  <description>TODO: Package description</description>
+  <description>URDF adn xacro for abu robocon 2027</description>
   <maintainer email="hilaltsabitulazmiarbai@gmail.com">hilal</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

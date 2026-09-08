@@ -4,138 +4,205 @@
   xmlns:xacro="http://www.ros.org/wiki/xacro"
   name="tr_robot">
 
-  <!-- ===================================================== -->
-  <!-- Konstanta dasar                                      -->
-  <!-- ===================================================== -->
+  <!-- ==================================================== -->
+  <!-- Parameter chassis                                    -->
+  <!-- Satuan panjang: meter                                -->
+  <!-- Satuan massa: kilogram                               -->
+  <!-- ==================================================== -->
 
-  <xacro:property name="base_length" value="0.70"/>
-  <xacro:property name="base_width" value="0.26"/>
-  <xacro:property name="base_height" value="0.18"/>
+  <xacro:property name="base_length" value="0.50"/>
+  <xacro:property name="base_width" value="0.50"/>
+  <xacro:property name="base_height" value="0.1"/>
+  <xacro:property name="base_mass" value="10.0"/>
 
-  <xacro:property name="upper_length" value="0.52"/>
-  <xacro:property name="upper_width" value="0.12"/>
-  <xacro:property name="upper_height" value="0.10"/>
+  <!-- ==================================================== -->
+  <!-- Parameter roda mecanum -->
+  <!-- ==================================================== -->
 
-  <xacro:property name="wheel_radius" value="0.12"/>
+  <xacro:property name="wheel_radius" value="0.10"/>
   <xacro:property name="wheel_width" value="0.06"/>
+  <xacro:property name="wheel_mass" value="0.40"/>
 
-  <xacro:property name="wheel_x" value="0.25"/>
-  <xacro:property name="wheel_y" value="0.10"/>
+  <!--
+  Jarak pusat roda dari pusat robot.
+  wheel_x = setengah wheelbase depan-belakang
+  wheel_y = setengah track width kiri-kanan
+  -->
 
-  <!-- ===================================================== -->
-  <!-- Material                                              -->
-  <!-- ===================================================== -->
+  <xacro:property name="wheel_x" value="0.23"/>
+  <xacro:property name="wheel_y" value="0.305"/>
 
-  <material name="blue">
-    <color rgba="0.12 0.22 0.75 1.0"/>
+  <!-- Jarak bagian bawah chassis dari lantai -->
+  <xacro:property name="ground_clearance" value="0.10"/>
+
+  <!-- Posisi pusat chassis terhadap base_footprint -->
+  <xacro:property
+    name="base_center_z"
+    value="${ground_clearance + base_height / 2.0}"/>
+
+  <xacro:property
+    name="wheel_center_z"
+    value="${ground_clearance - wheel_radius}"/>
+
+  <!-- ==================================================== -->
+  <!-- Parameter visual roller -->
+  <!-- ==================================================== -->
+
+  <xacro:property name="roller_radius" value="0.012"/>
+  <xacro:property name="roller_length" value="0.070"/>
+
+  <!-- ==================================================== -->
+  <!-- Material visual                                      -->
+  <!-- ==================================================== -->
+
+  <material name="tr_blue">
+    <color rgba="0.10 0.25 0.80 1.0"/>
   </material>
-
-  <material name="black">
+  
+  <material name="wheel_black">
     <color rgba="0.03 0.03 0.03 1.0"/>
   </material>
 
-  <!-- ===================================================== -->
-  <!-- Base footprint                                        -->
-  <!-- ===================================================== -->
+  <material name="roller_gray">
+    <color rgba="0.30 0.30 0.30 1.0"/>
+  </material>
+
+  <!-- ==================================================== -->
+  <!-- Root frame -->
+  <!-- ==================================================== -->
 
   <link name="base_footprint"/>
 
-  <joint name="base_footprint_to_base_link" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
+  <!-- ==================================================== -->
+  <!-- base_footprint                                       -->
+  <!-- Frame virtual yang berada di permukaan lantai        -->
+  <!-- ==================================================== -->
 
-    <origin
-      xyz="0 0 ${wheel_radius}"
-      rpy="0 0 0"/>
-  </joint>
-
-  <!-- ===================================================== -->
-  <!-- Chassis                                               -->
-  <!-- ===================================================== -->
+  <!-- ==================================================== -->
+  <!-- base_link                                            -->
+  <!-- Link fisik utama robot                               -->
+  <!-- ==================================================== -->
 
   <link name="base_link">
+
     <visual>
-      <origin xyz="0 0 0.09" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0"/>
 
       <geometry>
         <box
-          size="${base_length}
-                ${base_width}
-                ${base_height}"/>
+          size="${base_length} ${base_width} ${base_height}"/>
       </geometry>
 
-      <material name="blue"/>
+      <material name="tr_blue"/>
     </visual>
 
     <collision>
-      <origin xyz="0 0 0.09" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0"/>
 
       <geometry>
         <box
-          size="${base_length}
-                ${base_width}
-                ${base_height}"/>
+          size="${base_length} ${base_width} ${base_height}"/>
       </geometry>
     </collision>
 
     <inertial>
-      <origin xyz="0 0 0.09" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0"/>
 
-      <mass value="12.0"/>
+      <mass value="${base_mass}"/>
 
       <inertia
-        ixx="0.33"
+        ixx="${base_mass * (base_width * base_width
+              + base_height * base_height) / 12.0}"
         ixy="0.0"
         ixz="0.0"
-        iyy="0.55"
+        iyy="${base_mass * (base_length * base_length
+              + base_height * base_height) / 12.0}"
         iyz="0.0"
-        izz="0.79"/>
+        izz="${base_mass * (base_length * base_length
+              + base_width * base_width) / 12.0}"/>
     </inertial>
+
   </link>
 
-  <link name="upper_body_link">
-    <visual>
-      <origin xyz="0 0 0.18" rpy="0 0 0"/>
+  <joint
+    name="base_footprint_to_base_link"
+    type="fixed">
 
-      <geometry>
-        <box
-          size="${upper_length}
-                ${upper_width}
-                ${upper_height}"/>
-      </geometry>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
 
-      <material name="blue"/>
-    </visual>
-
-    <collision>
-      <origin xyz="0 0 0.18" rpy="0 0 0"/>
-
-      <geometry>
-        <box
-          size="${upper_length}
-                ${upper_width}
-                ${upper_height}"/>
-      </geometry>
-    </collision>
-  </link>
-
-  <joint name="upper_body_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="upper_body_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 ${base_center_z}" rpy="0 0 0"/>
   </joint>
 
-  <!-- ===================================================== -->
-  <!-- Macro roda                                            -->
-  <!-- ===================================================== -->
+  <!-- ==================================================== -->
+  <!-- Inertia cylinder roda -->
+  <!-- Axle roda sejajar sumbu Y -->
+  <!-- ==================================================== -->
+
+  <xacro:macro 
+    name="mecanum_wheel_inertia" 
+    params="mass radius width">
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+
+      <mass value="${mass}"/>
+
+      <inertia
+        ixx="${1.0 / 12.0 * mass * (3.0 * radius * radius + width * width)}"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="${1.0 / 2.0 * mass * radius * radius}"
+        iyz="0.0"
+        izz="${1.0 / 12.0 * mass * (3.0 * radius * radius + width * width)}"/>
+    </inertial>
+    
+  </xacro:macro>
+
+  <!-- ==================================================== -->
+  <!-- Visual satu roller -->
+  <!-- roller_sign = +1 atau -1 menentukan kemiringan -->
+  <!-- ==================================================== -->
 
   <xacro:macro
-    name="wheel"
-    params="prefix x y">
+    name="roller_visual" 
+    params="x z roller_sign">
+
+    <visual>
+      <origin
+        xyz="${x} 0 ${z}"
+        rpy="${pi / 2} ${roller_sign * 1.5708/2} 0"/>
+
+      <geometry>
+        <cylinder
+          radius="${roller_radius}"
+          length="${roller_length}"/>
+      </geometry>
+
+      <material name="roller_gray"/>
+    </visual>
+  </xacro:macro>
+
+  <!-- ==================================================== -->
+  <!-- Macro roda mecanum -->
+  <!-- ==================================================== -->
+
+  <xacro:macro 
+    name="mecanum_wheel" 
+    params="prefix x y z roller_sign">
 
     <link name="${prefix}_wheel_link">
+
       <visual>
-        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <origin
+          xyz="0 0 0"
+          rpy="${pi / 2.0} 0 0"/>
 
         <geometry>
           <cylinder
@@ -143,11 +210,33 @@
             length="${wheel_width}"/>
         </geometry>
 
-        <material name="black"/>
+        <material name="wheel_black"/>
       </visual>
 
+      <xacro:roller_visual
+        x="0.07"
+        z="0.07"
+        roller_sign="${roller_sign}"/>
+      
+      <xacro:roller_visual
+        x="-0.07"
+        z="0.07"
+        roller_sign="${roller_sign}"/>
+
+      <xacro:roller_visual
+        x="0.07"
+        z="-0.07"
+        roller_sign="${roller_sign}"/>
+
+      <xacro:roller_visual
+        x="-0.07"
+        z="-0.07"
+        roller_sign="${roller_sign}"/>
+
       <collision>
-        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <origin
+          xyz="0 0 0"
+          rpy="${pi / 2.0} 0 0"/>
 
         <geometry>
           <cylinder
@@ -156,17 +245,11 @@
         </geometry>
       </collision>
 
-      <inertial>
-        <mass value="0.4"/>
+      <xacro:mecanum_wheel_inertia
+        mass="${wheel_mass}"
+        radius="${wheel_radius}"
+        width="${wheel_width}"/>
 
-        <inertia
-          ixx="0.002"
-          ixy="0.0"
-          ixz="0.0"
-          iyy="0.002"
-          iyz="0.0"
-          izz="0.004"/>
-      </inertial>
     </link>
 
     <joint
@@ -176,29 +259,60 @@
       <parent link="base_link"/>
       <child link="${prefix}_wheel_link"/>
 
-      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
+
+      <dynamics 
+        damping="0.01" 
+        friction="0.0"/>
     </joint>
+    
   </xacro:macro>
 
-  <xacro:wheel
+  <!-- ==================================================== -->
+  <!-- Joint base_footprint ke base_link                    -->
+  <!-- Tidak diberi offset karena geometry base_link sudah  -->
+  <!-- mempunyai origin sendiri terhadap frame base_link    -->
+  <!-- ==================================================== -->
+
+  
+
+  <!-- ==================================================== -->
+  <!-- Susunan mecanum pola X -->
+  <!-- -->
+  <!-- Depan robot = +X -->
+  <!-- Kiri robot = +Y -->
+  <!-- -->
+  <!-- FL \ / FR -->
+  <!-- RL / \ RR -->
+  <!-- ==================================================== -->
+
+  <xacro:mecanum_wheel
     prefix="front_left"
     x="${wheel_x}"
-    y="${wheel_y}"/>
+    y="${wheel_y}"
+    z="${wheel_center_z}"
+    roller_sign="-1"/>
 
-  <xacro:wheel
+  <xacro:mecanum_wheel
     prefix="front_right"
     x="${wheel_x}"
-    y="${-wheel_y}"/>
+    y="${-wheel_y}"
+    z="${wheel_center_z}"
+    roller_sign="1"/> 
 
-  <xacro:wheel
+  <xacro:mecanum_wheel
     prefix="rear_left"
     x="${-wheel_x}"
-    y="${wheel_y}"/>
+    y="${wheel_y}"
+    z="${wheel_center_z}"
+    roller_sign="1"/> 
 
-  <xacro:wheel
+  <xacro:mecanum_wheel
     prefix="rear_right"
     x="${-wheel_x}"
-    y="${-wheel_y}"/>
+    y="${-wheel_y}"
+    z="${wheel_center_z}"
+    roller_sign="-1"/>   
 
 </robot>

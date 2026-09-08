@@ -1,0 +1,147 @@
+#VRML_SIM R2025a utf8
+
+PROTO BelajarTRRobot [
+  field SFVec3f translation 0 0.25 0
+  field SFRotation rotation 0 1 0 0
+  field SFString name "tr_robot"
+  field SFString controller "<extern>"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller IS controller
+
+    children [
+      Transform {
+        translation 0 0 0.06
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.12 0.22 0.75
+              roughness 0.7
+              metalness 0
+            }
+            geometry Box {
+              size 0.70 0.18 0.18
+            }
+          }
+        ]
+      }
+
+      Transform {
+        translation 0 0 0.12
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.18 0.30 0.90
+              roughness 0.7
+              metalness 0
+            }
+            geometry Box {
+              size 0.52 0.12 0.10
+            }
+          }
+        ]
+      }
+
+      Transform {
+        translation 0.25 0.10 0.02
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.15 0.15 0.15
+              roughness 0.9
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.06
+              radius 0.12
+            }
+          }
+        ]
+      }
+
+      Transform {
+        translation -0.25 0.10 0.02
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.15 0.15 0.15
+              roughness 0.9
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.06
+              radius 0.12
+            }
+          }
+        ]
+      }
+
+      Transform {
+        translation 0.25 -0.10 0.02
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.15 0.15 0.15
+              roughness 0.9
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.06
+              radius 0.12
+            }
+          }
+        ]
+      }
+
+      Transform {
+        translation -0.25 -0.10 0.02
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.15 0.15 0.15
+              roughness 0.9
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.06
+              radius 0.12
+            }
+          }
+        ]
+      }
+
+      Transform {
+        translation 0 0 -0.02
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.22 0.22 0.22
+              roughness 0.8
+              metalness 0.1
+            }
+            geometry Box {
+              size 0.78 0.26 0.06
+            }
+          }
+        ]
+      }
+    ]
+
+    boundingObject Box {
+      size 0.70 0.26 0.18
+    }
+
+    physics Physics {
+      density -1
+      mass 15
+    }
+  }
+}

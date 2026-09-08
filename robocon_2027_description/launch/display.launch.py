@@ -25,6 +25,12 @@ def generate_launch_description():
         'tr.urdf.xacro'
     )
 
+    rviz_config_file = os.path.join(
+        package_dir,
+        'rviz',
+        'tr_robot.rviz'
+    )
+
     robot_description = ParameterValue(
         Command([
             'xacro ',
@@ -54,7 +60,8 @@ def generate_launch_description():
     rviz = Node(
         package='rviz2',
         executable='rviz2',
-        output='screen'
+        output='screen',
+        arguments=['-d', rviz_config_file]
     )
 
     return LaunchDescription([

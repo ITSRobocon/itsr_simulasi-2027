@@ -12,11 +12,7 @@ find_package(urdf REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 find_package(rviz2 REQUIRED)
 
-install(DIRECTORY include/
-  DESTINATION include
-)
-
-install(DIRECTORY launch meshes rviz urdf
+install(DIRECTORY launch rviz urdf
   DESTINATION share/${PROJECT_NAME}
 )
 

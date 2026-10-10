@@ -39,8 +39,7 @@ python3 --version
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate        # Linux/macOS
-.venv\Scripts\activate           # Windows
+source .venv/bin/activate        
 
 pip install -r requirements.txt  # hanya kalau file ini sudah ada/diisi
 ```
@@ -82,7 +81,7 @@ source install/setup.bash
 ## 5. Jalankan simulasi + RViz
 
 ```bash
-ros2 launch src/launch/bringup.launch.py
+ros2 launch ./src/itsr_simulasi-2027/launch/bringup.launch.py
 ```
 
 Ini akan membuka Webots (dunia `simple_arena.wbt`) dan RViz sekaligus; posisi

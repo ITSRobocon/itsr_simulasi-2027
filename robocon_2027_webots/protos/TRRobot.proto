@@ -4,7 +4,7 @@ PROTO TRRobot [
   field SFVec3f translation 0 0.25 0
   field SFRotation rotation 0 1 0 0
   field SFString name "tr_robot"
-  field SFString controller "tr_mecanum_test"
+  field SFString controller "<extern>"
 ]
 {
   Robot {

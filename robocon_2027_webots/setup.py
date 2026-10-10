@@ -1,5 +1,5 @@
-from glob import glob
 import os
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = 'robocon_2027_webots'
@@ -7,7 +7,7 @@ package_name = 'robocon_2027_webots'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(exclude=['test']),
+    packages=find_packages(),
     data_files=[
         (
             'share/ament_index/resource_index/packages',
@@ -65,14 +65,20 @@ setup(
     maintainer_email='hilaltsabitulazmiarbai@gmail.com',
     description='this package is for robocon 2027 simulation and control',
     license='Apache-2.0',
-    extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
+    # extras_require={
+    #     'test': [
+    #         'pytest',
+    #     ],
+    # },
+    # entry_points={
+    #     'console_scripts': [
+    #         'controller_node = robocon_2027_controller.controller_node:main',
+    #     ],
+    # },
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'controller_node = robocon_2027_controller.controller_node:main',
+            'tr_webots_driver = robocon_2027_webots.tr_webots_driver:main',
         ],
     },
 )

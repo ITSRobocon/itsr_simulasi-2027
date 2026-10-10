@@ -9,5 +9,6 @@
         "/home/hilal/robooooot/ros2_ws/install/my_simulation/lib/python3.10/site-packages",
         "/opt/ros/humble/lib/python3.10/site-packages",
         "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+    ],
+    "cmake.sourceDirectory": "/home/hilal/robooooot/robocon_2027_sim/src/robocon_2027_description"
 }

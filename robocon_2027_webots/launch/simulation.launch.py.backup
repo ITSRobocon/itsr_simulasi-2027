@@ -1,0 +1,81 @@
+import os
+
+from ament_index_python.packages import (
+    get_package_share_directory,
+)
+
+from launch import LaunchDescription
+from launch.actions import EmitEvent
+from launch.actions import RegisterEventHandler
+from launch.event_handlers import OnProcessExit
+from launch.events import Shutdown
+
+from launch_ros.actions import Node
+
+from webots_ros2_driver.webots_launcher import (
+    WebotsLauncher,
+)
+
+
+def generate_launch_description():
+    package_dir = get_package_share_directory(
+        'robocon_2027_webots'
+    )
+
+    world_path = os.path.join(
+        package_dir,
+        'worlds',
+        'simple_arena.wbt'
+    )
+
+    webots_urdf_path = os.path.join(
+        package_dir,
+        'urdf',
+        'tr_webots.urdf'
+    )
+
+    with open(
+        webots_urdf_path,
+        'r',
+        encoding='utf-8'
+    ) as urdf_file:
+        robot_description = urdf_file.read()
+
+    webots = WebotsLauncher(
+        world=world_path
+    )
+
+    tr_driver = Node(
+        package='webots_ros2_driver',
+        executable='driver',
+        output='screen',
+
+        additional_env={
+            'WEBOTS_CONTROLLER_URL':
+                'ipc://1234/tr_robot'
+        },
+
+        parameters=[
+            {
+                'robot_description':
+                    robot_description
+            }
+        ]
+    )
+
+    shutdown_handler = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=webots,
+            on_exit=[
+                EmitEvent(
+                    event=Shutdown()
+                )
+            ]
+        )
+    )
+
+    return LaunchDescription([
+        webots,
+        tr_driver,
+        shutdown_handler,
+    ])

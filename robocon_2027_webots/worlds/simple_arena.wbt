@@ -38,6 +38,9 @@ WorldInfo {
 }
 TRRobot {
   translation -4.5 -4.5 2
+  rotation 0 1 0 0
+  name "tr_robot"
+  controller "<extern>"
 }
 Viewpoint {
   orientation 0.1679920258722947 -0.3595909263023948 -0.9178633040732743 5.341554659008032

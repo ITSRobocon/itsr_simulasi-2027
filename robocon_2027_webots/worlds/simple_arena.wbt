@@ -34,6 +34,14 @@ WorldInfo {
         10, 0
       ]
     }
+    ContactProperties {
+      material1 "game_piece"
+      material2 "arena_floor"
+      coulombFriction [
+        0.7
+      ]
+      bounce 0
+    }
   ]
 }
 TRRobot {
@@ -758,5 +766,35 @@ Solid {
   boundingObject Cylinder {
     height 0.5
     radius 0.135
+  }
+}
+SolidBox {
+  translation 5 5 0.175
+  name "game_piece_red"
+  size 0.35 0.35 0.35
+  contactMaterial "game_piece"
+  appearance PBRAppearance {
+    baseColor 0.85 0.1 0.1
+    roughness 0.6
+    metalness 0
+  }
+  physics Physics {
+    density -1
+    mass 1.0
+  }
+}
+SolidBox {
+  translation -5 5 0.175
+  name "game_piece_blue"
+  size 0.35 0.35 0.35
+  contactMaterial "game_piece"
+  appearance PBRAppearance {
+    baseColor 0.10 0.25 0.80
+    roughness 0.6
+    metalness 0
+  }
+  physics Physics {
+    density -1
+    mass 1.0
   }
 }

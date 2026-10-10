@@ -18,8 +18,9 @@ yang menggantikan langkah ini:
 ## 1. Clone repo
 
 ```bash
+mkdir -p simulasi-2027_ws/src
+cd simulasi-2027_ws/src
 git clone https://github.com/ITSRobocon/itsr_simulasi-2027.git
-cd robocon_2027_sim/src
 ```
 
 ## 2. (Opsional) Buat virtual environment Python
@@ -57,7 +58,7 @@ pip install -r requirements.txt  # hanya kalau file ini sudah ada/diisi
 
 ## 3. Install dependency ROS 2 (rosdep)
 
-Ini yang jadi "requirements.txt" sesungguhnya untuk workspace ROS 2 - dia
+Ini yang jadi "requirements.txt" sebenarnya untuk workspace ROS 2 - dia
 baca tiap `package.xml` di `src/` dan install paket apt yang dibutuhkan
 (`ros-humble-rclpy`, `ros-humble-webots-ros2-driver`, `ros-humble-rviz2`, dst).
 

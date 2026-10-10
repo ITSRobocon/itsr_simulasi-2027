@@ -58,7 +58,7 @@ pip install -r requirements.txt  # hanya kalau file ini sudah ada/diisi
 
 ## 3. Install dependency ROS 2 (rosdep)
 
-Ini yang jadi "requirements.txt" sebenarnya untuk workspace ROS 2 - dia
+Ini yang jadi "requirements.txt" sesungguhnya untuk workspace ROS 2 - dia
 baca tiap `package.xml` di `src/` dan install paket apt yang dibutuhkan
 (`ros-humble-rclpy`, `ros-humble-webots-ros2-driver`, `ros-humble-rviz2`, dst).
 

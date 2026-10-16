@@ -769,7 +769,7 @@ Solid {
   }
 }
 SolidBox {
-  translation 5 5 0.175
+  translation -5 5 0.175
   name "game_piece_red"
   size 0.35 0.35 0.35
   contactMaterial "game_piece"
@@ -784,7 +784,7 @@ SolidBox {
   }
 }
 SolidBox {
-  translation -5 5 0.175
+  translation 5 5 0.175
   name "game_piece_blue"
   size 0.35 0.35 0.35
   contactMaterial "game_piece"
